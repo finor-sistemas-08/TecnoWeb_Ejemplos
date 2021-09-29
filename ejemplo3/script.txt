@@ -1,0 +1,13 @@
+create table persona(
+id_persona int(10) AUTO_INCREMENT PRIMARY KEY,
+nombre varchar(30) not null,
+paterno varchar(30),
+materno varchar(30),
+sexo varchar(1),
+estado_civil varchar(30),
+fecha_nac varchar(30)
+);
+
+
+
+

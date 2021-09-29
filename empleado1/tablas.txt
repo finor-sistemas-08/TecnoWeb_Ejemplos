@@ -1,0 +1,13 @@
+create table empleado(
+cod_emp int auto_increment,
+nombre varchar(25) not null,
+paterno varchar(25) not null,
+materno varchar(25),
+estado_civil varchar(20),
+categoria varchar(10),
+fecha_ing date,
+activo tinyint(1),
+primary key(cod_emp));
+
+
+

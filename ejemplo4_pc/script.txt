@@ -1,0 +1,13 @@
+create table pais(
+id_pais int(10) AUTO_INCREMENT PRIMARY KEY,
+nombre varchar(30)
+);
+
+create table ciudad(
+id_ciudad int(10) AUTO_INCREMENT PRIMARY KEY,
+nombre varchar(30),
+id_pais int not null,
+foreign key(id_pais) references pais(id_pais)
+);
+
+
