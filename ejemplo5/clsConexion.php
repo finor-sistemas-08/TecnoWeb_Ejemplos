@@ -4,14 +4,14 @@ class Conexion{
 	private $servidor;
 	private $usuario;
 	private $password;
-	private $basedatos;
+	private $basededatos;
 //constructor
 public function Conexion()
 {
 	$this->servidor = "localhost";
 	$this->usuario = "root";
 	$this->password = "";
-	$this->basedatos = "ejemplo5";
+	$this->basedatos = "ejemplo4";
 	
 }
 //metedos de acceso set y get

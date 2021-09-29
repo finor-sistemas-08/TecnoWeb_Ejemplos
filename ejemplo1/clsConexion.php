@@ -65,7 +65,7 @@ public function desconectar($cnx)
 
 public function ejecutar($sql)
 {
-	$bd=$this->conectar();
+	$bd=$this->conectar();	 
     $registros=mysqli_query($bd,$sql);
     $this->desconectar($bd);
 	

@@ -7,7 +7,7 @@ include_once('clsProducto.php');
 include_once('clsCategoria.php');
 ?>
 
-<b> REGISTRO DE PRODUCTOS </b>
+<b> REGISTRO DE PRODUCTOS  </b>
 <form id="form1" name="form1" method="post" action="frmProducto.php">
   <table width="400" border="0">
     <tr>
@@ -27,12 +27,6 @@ include_once('clsCategoria.php');
       <td width="80">Precio</td>
       <td width="225">	  	  
         <input name="txtPrecio" type="text" value="<?php echo $_GET['pprecio']; ?>" id="txtPrecio" />
-      </td>
-     </tr>	
-     <tr>
-      <td width="80">Stock</td>
-      <td width="225">	  	  
-        <input name="txtStock" type="text" value="<?php echo $_GET['pstock']; ?>" id="txtStock" />
       </td>
      </tr>	
      <tr>
@@ -73,22 +67,6 @@ include_once('clsCategoria.php');
           <input type="radio" name="grupo" value="2" <?php if ($_POST['grupo']=="2") echo "checked"; ?> />
         Descripcion
           <input name="txtBuscar" type="text" id="txtBuscar" value="<?php echo $valor; ?>" size="33"/>   
-
-          <!-- Añadido recientemente para el rango de precios-->                
-          <br>
-          <input type="radio" name="grupo" value="3" <?php if($_POST['grupo']=="3") echo "checked"; ?> />
-          Rango de precios
-          <input name="txtP1" type:"text" id="txtP1" value="" size="33" />
-          <input name="txtP2" type:"text" id="txtP2" value="" size="33" />
-          <!-- Hasta aqui -->      
-
-          <!-- Añadido para el rango de stock-->
-          <br>
-          <input type="radio" name="grupo" value="4" <?php if($_POST['grupo']=="4") echo "checked"; ?> />
-          Rango de stock
-          <input name="txtS1" type:"text" id="txtS1" value="" size="33" />
-          <input name="txtS2" type:"text" id="txtS2" value="" size="33" />
-          <!-- Hasta aqui -->      
         </td>
     </tr>
   </table>
@@ -102,7 +80,6 @@ function guardar()
 		$obj= new Producto();
 		$obj->setDescripcion($_POST['txtDescripcion']);
 		$obj->setPrecio($_POST['txtPrecio']);
-		$obj->setStock($_POST['txtStock']);
 		$obj->setIdCategoria($_POST['cboIdCategoria']);		    
 		if ($obj->guardar())
 		    echo "Producto Guardado..!!!";
@@ -121,7 +98,6 @@ function modificar()
 		$obj->setIdProducto($_POST['txtIdProducto']);
 		$obj->setDescripcion($_POST['txtDescripcion']);
 		$obj->setPrecio($_POST['txtPrecio']);
-		$obj->setStock($_POST['txtStock']);
 		$obj->setIdCategoria($_POST['cboIdCategoria']);		
 		if ($obj->modificar())
 			echo "Producto modificado..!!!";
@@ -161,17 +137,7 @@ function buscar()
 	   $resultado=$obj->buscarPorDescripcion($_POST['txtBuscar']);
      	   mostrarRegistros($resultado);	
  	  }; break;
-  case 3: 
-          {
-	   $resultado=$obj->buscarPorPrecio($_POST['txtP1'],$_POST['txtP2']);
-     	   mostrarRegistros($resultado);
- 	  }; break;   
-  case 4:
-          {
-	   $resultado=$obj->buscarPorStock($_POST['txtS1'],$_POST['txtS2']);
-     	   mostrarRegistros($resultado);
- 	  }; break;
-   }
+   }	
 }
 
  function mostrarRegistros($registros)
@@ -180,8 +146,7 @@ function buscar()
 	echo "<tr><td>IdProducto</td>";
 	echo "<td>Descripcion</td>";
   echo "<td>Precio</td>";		 
-  echo "<td>Stock</td>";		 
-  echo "<td>Categoria</td>"; //Si quiero mostrar el nombre de la categoria		 	
+ //echo "<td>Categoria</td>"; Si quiero mostrar el nombre de la categoria		 	
 	echo "<td><center>*</center></td></tr>";
 	while($fila=mysqli_fetch_object($registros))
 	{
@@ -189,9 +154,8 @@ function buscar()
 		echo "<td>$fila->id_producto</td>";
 		echo "<td>$fila->descripcion</td>";
 		echo "<td>$fila->precio</td>";
-		echo "<td>$fila->stock</td>";
-		echo "<td>$fila->nombre</td>";
-		echo "<td><a href='frmProducto.php? pid_producto=$fila->id_producto&pdescripcion=$fila->descripcion&pprecio=$fila->precio&pstock=$fila->stock&pcategoria=$fila->nombre'> [Editar] </a> </td>";
+		//echo "<td>$fila->nombre</td>";
+		echo "<td><a href='frmProducto.php? pid_producto=$fila->id_producto&pdescripcion=$fila->descripcion&pprecio=$fila->precio&pcategoria=$fila->nombre'> [Editar] </a> </td>";
 		echo "</tr>";
 	}
 	echo "</table>";

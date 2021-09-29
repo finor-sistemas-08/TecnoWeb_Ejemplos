@@ -6,7 +6,6 @@ class Producto extends Conexion
 	private $id_producto;
 	private $descripcion;
 	private $precio;
-	private $stock;
 	private $id_categoria;
 	
 	//construtor
@@ -14,8 +13,7 @@ class Producto extends Conexion
 	{   parent::Conexion();
 	    $this->id_producto=0;
 	    $this->descripcion="";
-        $this->precio=0;
-        $this->stock=0;
+            $this->precio=0;
 	    $this->id_categoria=0;		
 	}
 
@@ -45,16 +43,7 @@ class Producto extends Conexion
 	{
 		return $this->precio;
 	}
-	
-	public function setStock($valor)
-	{
-		$this->stock=$valor;
-	}
-	public function getStock()
-	{
-		return $this->stock;
-	}
-	
+
 	public function setIdCategoria($valor)
 	{
 		$this->id_categoria=$valor;
@@ -66,7 +55,7 @@ class Producto extends Conexion
 	
 	public function guardar()
 	{
-        $sql="insert into producto(descripcion,precio,stock,id_categoria) values('$this->descripcion','$this->precio','$this->stock','$this->id_categoria')";
+        $sql="insert into producto(descripcion,precio,id_categoria) values('$this->descripcion',$this->precio,$this->id_categoria)";		
 		if(parent::ejecutar($sql))
 			return true;
 		else
@@ -74,8 +63,8 @@ class Producto extends Conexion
 	}
 	
 	public function modificar()	{
-	$sql="update producto set descripcion='$this->descripcion', precio='$this->precio',stock='$this->stock',id_categoria='$this->id_categoria'
-	where id_producto=$this->id_producto";
+	$sql="update producto set descripcion='$this->descripcion', precio='$this->precio',id_categoria='$this->id_categoria'
+	where id_producto=$this->id_producto";		
 		if(parent::ejecutar($sql))
 			return true;
 		else
@@ -94,31 +83,19 @@ class Producto extends Conexion
 	
 	public function buscar()
 	{
-		$sql="select id_producto,descripcion,precio,stock,nombre from producto,categoria where categoria.id_categoria=producto.id_categoria";
+		$sql="select id_producto,descripcion,precio,nombre from producto,categoria where categoria.id_categoria=producto.id_categoria";
 		return parent::ejecutar($sql);
 	}										
    //metodos utilizados para el comboBox
 	public function buscarPorCodigo($criterio)
 	{
-		$sql="select id_producto,descripcion,precio,stock,nombre from producto,categoria where categoria.id_categoria=producto.id_categoria and id_producto like '$criterio%'";
+		$sql="select id_producto,descripcion,precio,nombre from producto,categoria where categoria.id_categoria=producto.id_categoria and id_producto like '$criterio%'";
 		return parent::ejecutar($sql);
 	}								
 	
 	public function buscarPorDescripcion($criterio)
 	{
-		$sql="select id_producto,descripcion,precio,stock,nombre from producto,categoria where categoria.id_categoria=producto.id_categoria and descripcion like '$criterio%'";
-		return parent::ejecutar($sql);
-	}
-
-	public function buscarPorPrecio($p1,$p2)
-	{
-		$sql="select id_producto,descripcion,precio,stock,nombre  from producto,categoria where categoria.id_categoria=producto.id_categoria and precio >= '$p1' and precio <='$p2'";
-		return parent::ejecutar($sql);
-	}
-
-	public function buscarPorStock($s1,$s2)
-	{
-		$sql="select id_producto,descripcion,precio,stock,nombre from producto,categoria where categoria.id_categoria=producto.id_categoria and stock >= '$s1' and stock <='$s2'";
+		$sql="select id_producto,descripcion,precio,nombre from producto,categoria where categoria.id_categoria=producto.id_categoria and descripcion like '$criterio%'";
 		return parent::ejecutar($sql);
 	}
 }    

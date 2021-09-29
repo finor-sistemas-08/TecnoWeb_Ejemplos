@@ -6,12 +6,12 @@
 	   private $prec= array();
 	   private $dim;
 	 
-	   	public function Carrito()
-	   	{
+	   public function Carrito()
+	   {
 	      $this->dim = 0;
 		}
 		public function setDim($f)
-	   	{
+	   {
 		     $this->dim = $f;
 		}
 		public function getDim()
@@ -58,5 +58,5 @@
 			$this->dim--;
 			}
 		}
-	}
+}						  
 ?>			
