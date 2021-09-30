@@ -1,10 +1,10 @@
 body {
-	background-color: #FFFFFF;
+	background-color: #ffffff;
 }
 #form {
     width:300px;
     margin:auto;
-    background-color:#84AA00;
+    background-color:#084c50;
     border:none;
 }
 #form legend{
@@ -17,7 +17,7 @@ body {
 #form input.btn {
 width:inherit;
     padding:2px;
-    color:#FFFFFF;
+    color:#91d5da;
     background-color:#576F00;
     border:1px solid #000000;
 }

@@ -23,7 +23,7 @@ $valor = $_POST['txtBuscar'];
 				<table width="325" border="0">
 					<tr>
 						<td>&nbsp;</td>
-						<td><? $cod = $_GET['cod']; ?>
+						<td><?php $cod = $_GET['cod']; ?>
 							<input name="txtIdCliente" type="hidden" value="<?php echo $cod; ?>" id="txtIdCliente" />
 							<label></label>
 						</td>
@@ -84,10 +84,10 @@ $valor = $_POST['txtBuscar'];
 								echo "Buscar por ";
 							?>
 								<label>
-									<input name="grupo" type="radio" value="1" checked="checked" <?php if ($_POST[grupo] == "1") echo "checked"; ?> />
+									<input name="grupo" type="radio" value="1" checked="checked" <?php if ($_POST['grupo'] == "1") echo "checked"; ?> />
 									Apellidos</label>
 								<label>
-									<input type="radio" name="grupo" <?php if ($_POST[grupo] == "2") echo "checked"; ?> value="2" />
+									<input type="radio" name="grupo" <?php if ($_POST['grupo'] == "2") echo "checked"; ?> value="2" />
 									Empresa</label>
 								<label>
 									<input name="txtBuscar" type="text" id="txtBuscar" value="<?php echo $valor; ?>" size="33" />
@@ -126,7 +126,10 @@ $valor = $_POST['txtBuscar'];
 				echo "Cliente Guardado..!!!";
 				if (isset($_SESSION['nuevocliente'])) {
 					$aux = $obj->ultimo_codigo();
-					header("Location: http://localhost/maestro-detalle/frmBuscarCliente.php? pnuevocli=$aux");
+					header("Location: http://localhost/EJEMPLOS/maestro-detalle/frmBuscarCliente.php? pnuevo_cli=$aux");
+					
+					// Solo ocurre cuando dan clic
+					// echo("<a href='frmBuscarCliente.php?pnuevo_cli=$aux'></a>");
 				}
 			} else
 				echo "Error al guardar el Cliente";
