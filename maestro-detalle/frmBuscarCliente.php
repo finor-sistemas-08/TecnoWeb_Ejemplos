@@ -7,12 +7,7 @@ include_once('clsCliente.php');
 
 <head>
 	<title></title>
-	<script>
-		function Insertar() {
-			opener.document.location.reload()
-			window.close()
-		}
-	</script>
+	
 	<!-- Llamada a la CSS -->
 	<link rel="stylesheet" href="estilo.css" type="text/css" />
 
@@ -80,20 +75,43 @@ include_once('clsCliente.php');
 									echo "<td>$f->empresa</td>";
 									echo "<td>$f->telefono</td>";
 									echo "<td>$f->direccion</td>";
-									
-									// Botón para editar el registro seleccionado
-									echo "<td>
-											<a href='frmCliente.php?
-												cod=$f->id_cliente
-												&nom=$f->nombre
-												&ape=$f->apellidos
-												&emp=$f->empresa
-												&tel=$f->telefono
-												&dir=$f->direccion'>
-												<< 
+									// if ($_GET["agregar"]) {
+									// 	echo "<td>
+									// 			<a href='frmBuscarCliente.php?
+									// 				pnom_cli=$f->nombre $f->apellidos
+									// 				&pid_cli=$f->id_cliente
+									// 			'> 
+									// 				<<
+									// 			</a>
+									// 		</td>";
+									// } else {
+										// $_POST["pid_cli"] = $f->id_cliente;
+										// $_POST["pnom_cli"] = $f->nombre . " " . $f->apellidos;
+
+										// Para agregar al formulario de venta
+										echo "<td>
+											<a href='frmBuscarCliente.php?
+												pnom_cli=$f->nombre $f->apellidos
+												&pid_cli=$f->id_cliente
+											'> 
+												Add
 											</a>
 										</td>";
-									echo "</tr>";
+
+										// Botón para editar el registro seleccionado
+										echo "<td>
+												<a href='frmCliente.php?
+													cod=$f->id_cliente
+													&nom=$f->nombre
+													&ape=$f->apellidos
+													&emp=$f->empresa
+													&tel=$f->telefono
+													&dir=$f->direccion'>
+													<< 
+												</a>
+											</td>";
+										echo "</tr>";
+									// }
 								}
 								echo "</table>";
 							}
@@ -112,14 +130,16 @@ include_once('clsCliente.php');
 		</form>
 	</center>
 	<?php
+	
+	//manda al formulario Venta el nombre y apellidos
 	if ($_GET['pnom_cli']) {
-		$_SESSION['cliente'] = $_GET['pnom_cli']; //manda al formulario Venta el nombre y apellidos
+		$_SESSION['cliente'] = $_GET['pnom_cli'];
 		$_SESSION['idcliente'] = $_GET['pid_cli'];
 
 		echo "<script> 
-     opener.document.location.reload() 
-     window.close() 
-     </script>";
+				opener.document.location.reload() 
+				window.close() 
+			</script>";
 	}
 	?>
 </body>
