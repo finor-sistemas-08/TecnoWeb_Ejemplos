@@ -102,7 +102,7 @@ include_once('models/clsProducto.php');
 	</center>
 	<?php
 
-	// Al dar Clic en "Agregar Producto" el Producto seleccionado seará en la variable $_SESSION["carrito"]
+	// Al dar Clic en "Agregar Producto" el Producto seleccionado será en la variable $_SESSION["carrito"]
 	// el cual será usado luego en el formulario de Venta
 	if ($_POST['botones'] == "AgregarProducto") {
 		if ($_POST['txtCodigoProducto'] && $_POST['txtCantidad'] && $_POST['txtPreciov']) {

@@ -262,7 +262,7 @@ function updatePosCart()
 										echo "<td>
 												<input type=\"submit\" name=\"botones\" class=\"btn\" value=\"Quitar\" />
 												
-												<input name=\"posicionCart\" type=\"text\" value=\" $pos_aux \"  />
+												<input name=\"posicionCart$k\" type=\"text\" value=\" $pos_aux \"  />
 											</td>";
 										echo "</tr>";
 									}
