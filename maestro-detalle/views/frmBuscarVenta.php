@@ -1,11 +1,11 @@
 <?php
 ob_start();
-include_once('models/clsCarro.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsCarro.php');
 session_start();
 ?>
 <?php
-include_once("models/clsVenta.php");
-include_once('models/clsDetalleVenta.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsVenta.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsDetalleVenta.php');
 ?>
 <html>
 
@@ -13,14 +13,14 @@ include_once('models/clsDetalleVenta.php');
 	<title></title>
 
 	<!-- Llamada a la CSS -->
-	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
+	<link rel="stylesheet" href="C:\xampp\htdocs\EJEMPLOS\maestro-detalle/css/estilo.css" type="text/css" />
 
 </head>
 
 <body>
 
 	<center>
-		<form id="form1" method="post" action="frmBuscarVenta.php">
+		<form id="form1" method="post" action="views/frmBuscarVenta.php">
 			<fieldset id="form">
 				<legend>BUSQUEDA DE VENTAS </legend>
 				<table width="342" border="0">
@@ -60,7 +60,7 @@ include_once('models/clsDetalleVenta.php');
 			echo "<td> <input type=\"text\" size=\"15\"  readonly=\"true\"  value=\"$fila->apellidos\" /> </td>";
 			echo "<td> <input type=\"text\" size=\"5\" readonly=\"true\"  value=\"$fila->id_venta\" /> </td>";
 			echo "<td> <input type=\"text\" size=\"10\" readonly=\"true\"  value=\"$fila->fecha\" /> </td>";
-			echo "<td><a href='frmBuscarVenta.php? pid_cli=$fila->id_cliente&pnom_cli=$fila->nombre $fila->apellidos&pid_ven=$fila->id_venta&pfecha=$fila->fecha'> << </a> </td>";
+			echo "<td><a href='views/frmBuscarVenta.php? pid_cli=$fila->id_cliente&pnom_cli=$fila->nombre $fila->apellidos&pid_ven=$fila->id_venta&pfecha=$fila->fecha'> << </a> </td>";
 			echo "</tr>";
 		}
 		echo "</table></center>";

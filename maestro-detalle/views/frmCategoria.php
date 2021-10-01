@@ -1,10 +1,10 @@
 <?php
 ob_start();
-include_once('models/clsConexion.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsConexion.php');
 
 // Inicia una nueva sesión en el contexto actual
 session_start();
-include_once('models/clsCategoria.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsCategoria.php');
 
 // Si la variable de sesión contiene un valor "búsqueda" y éste no es 
 // nulo entonces se le asigna un valor string "registro" el cual nos va
@@ -21,13 +21,13 @@ if (!isset($_SESSION['busqueda'])) {
 <title>Categorias de Productos</title>
 
 <!-- Llamada a la CSS -->
-<link rel="stylesheet" href="css/estilo.css" type="text/css" />
+<link rel="stylesheet" href="C:\xampp\htdocs\EJEMPLOS\maestro-detalle/css/estilo.css" type="text/css" />
 
 </head>
 
 <body>
 	<center>
-		<form id="form2" name="formularioCate" method="post" action="frmCategoria.php">
+		<form id="form2" name="formularioCate" method="post" action="views/frmCategoria.php">
 			<fieldset id="form">
 				<legend>MENÚ DE CATEGORIAS</legend>
 				<table width="381" border="0">
@@ -146,7 +146,7 @@ if (!isset($_SESSION['busqueda'])) {
 					// variable $_SESSION en la clave "busqueda".
 					$_SESSION['busqueda'] = $_POST['txtBuscar'];
 					
-					echo "<form id='form3' name='form3' method='post' action='frmCategoria.php'>";
+					echo "<form id='form3' name='form3' method='post' action='views/frmCategoria.php'>";
 					echo "<table border ='1'>";
 					echo "<tr bgcolor='black'><td><font color='white'>IDCat</font></td><td><font color='white'>Nombre</font></td><td></td></tr>";
 					$k = 1;

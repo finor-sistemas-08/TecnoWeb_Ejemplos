@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-include_once('models/clsCliente.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsCliente.php');
 ?>
 <html>
 
@@ -9,13 +9,13 @@ include_once('models/clsCliente.php');
 	<title></title>
 	
 	<!-- Llamada a la CSS -->
-	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
+	<link rel="stylesheet" href="C:\xampp\htdocs\EJEMPLOS\maestro-detalle/css/estilo.css" type="text/css" />
 
 </head>
 
 <body>
 	<center>
-		<form id="form1" method="post" action="frmBuscarCliente.php">
+		<form id="form1" method="post" action="views/frmBuscarCliente.php">
 			<fieldset id="form">
 				<legend>BUSQUEDA DE CLIENTES</legend>
 				<table width="342" border="0">
@@ -77,7 +77,7 @@ include_once('models/clsCliente.php');
 									echo "<td>$f->direccion</td>";
 									// if ($_GET["agregar"]) {
 									// 	echo "<td>
-									// 			<a href='frmBuscarCliente.php?
+									// 			<a href='views/frmBuscarCliente.php?
 									// 				pnom_cli=$f->nombre $f->apellidos
 									// 				&pid_cli=$f->id_cliente
 									// 			'> 
@@ -90,7 +90,7 @@ include_once('models/clsCliente.php');
 
 										// Para agregar al formulario de venta
 										echo "<td>
-											<a href='frmBuscarCliente.php?
+											<a href='views/frmBuscarCliente.php?
 												pnom_cli=$f->nombre $f->apellidos
 												&pid_cli=$f->id_cliente
 											'> 
@@ -100,7 +100,7 @@ include_once('models/clsCliente.php');
 
 										// Botón para editar el registro seleccionado
 										echo "<td>
-												<a href='frmCliente.php?
+												<a href='views/frmCliente.php?
 													cod=$f->id_cliente
 													&nom=$f->nombre
 													&ape=$f->apellidos
@@ -123,7 +123,7 @@ include_once('models/clsCliente.php');
 					</tr>
 					<tr>
 						<td colspan="2">
-							<center><a href='frmCliente.php'> Nuevo Cliente </a></center>
+							<center><a href='views/frmCliente.php'> Nuevo Cliente </a></center>
 						</td>
 					</tr>
 				</table>

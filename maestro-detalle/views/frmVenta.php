@@ -1,13 +1,13 @@
 <?php
 ob_start();
-include_once('models/clsCarro.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsCarro.php');
 session_start();
 ?>
 <?php
-include_once('models/clsVenta.php');
-include_once('models/clsDetalleVenta.php');
-include_once('models/clsCliente.php');
-include_once('models/clsProducto.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsVenta.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsDetalleVenta.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsCliente.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsProducto.php');
 ?>
 <?php
 if (!isset($_SESSION['carrito'])) {
@@ -54,29 +54,29 @@ function nuevo()
 		var miPopup
 
 		function abreBuscarCliente() {
-			miPopup = window.open("frmBuscarCliente.php", "miwin", "width=600,height=400,scrollbars=yes")
+			miPopup = window.open("views/frmBuscarCliente.php", "miwin", "width=600,height=400,scrollbars=yes")
 			miPopup.focus()
 		}
 
 		function abreBuscarProducto() {
-			miPopup = window.open("frmBuscarProducto.php", "miwin", "width=600,height=350,scrollbars=yes")
+			miPopup = window.open("views/frmBuscarProducto.php", "miwin", "width=600,height=350,scrollbars=yes")
 			miPopup.focus()
 		}
 
 		function abreBuscarVenta() {
-			miPopup = window.open("frmBuscarVenta.php", "miwin", "width=600,height=350,scrollbars=yes")
+			miPopup = window.open("views/frmBuscarVenta.php", "miwin", "width=600,height=350,scrollbars=yes")
 			miPopup.focus()
 		}
 	</script>
 
 	<!-- Llamada a la CSS -->
-	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
+	<link rel="stylesheet" href="C:\xampp\htdocs\EJEMPLOS\maestro-detalle/css/estilo.css" type="text/css" />
 </head>
 
 <body>
 
 	<center>
-		<form id="form1" name="form1" method="post" action="frmVenta.php">
+		<form id="form1" name="form1" method="post" action="views/frmVenta.php">
 			<fieldset id="form">
 				<legend>REGISTRO DE VENTAS </legend>
 				<table width="342" border="0">
@@ -120,7 +120,7 @@ function nuevo()
 									Buscar
 								</a>
 								<?php
-								//href="frmBuscarCliente.php" 
+								//href="views/frmBuscarCliente.php" 
 								if ($_GET['pid_cli']) {
 									$id_cli = $_GET['pid_cli'];
 									$_SESSION["idcliente"] = $id_cli;
@@ -164,7 +164,7 @@ function nuevo()
 										echo "<td>$prec</td>";
 										echo "<td>$cant</td>";
 										echo "<td>$subt</td>";
-										echo "<td><a href='frmVenta.php? pelim=$k'> << </a> </td>";
+										echo "<td><a href='views/frmVenta.php? pelim=$k'> << </a> </td>";
 										echo "</tr>";
 									}
 								}

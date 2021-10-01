@@ -1,24 +1,24 @@
 <?php
 ob_start();
-include_once('models/clsCarro.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsCarro.php');
 session_start();
 ?>
 
 <?php
-include_once('models/clsProducto.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsProducto.php');
 ?>
 <html>
 
 <head>
 	<title></title>
 	<!-- Llamada a la CSS -->
-	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
+	<link rel="stylesheet" href="C:\xampp\htdocs\EJEMPLOS\maestro-detalle/css/estilo.css" type="text/css" />
 </head>
 
 <body>
 
 	<center>
-		<form id="form1" method="post" action="frmBuscarProducto.php">
+		<form id="form1" method="post" action="views/frmBuscarProducto.php">
 			<fieldset id="form">
 				<legend>BUSQUEDA DE PRODUCTOS</legend>
 				<table width="342" border="0">
@@ -88,7 +88,7 @@ include_once('models/clsProducto.php');
 									echo "<td>$g->precio</td>";
 									echo "<td>$g->stock</td>";
 									echo "<td>$g->nombre</td>";
-									echo "<td><a href='frmBuscarProducto.php? ppro=$g->descripcion&pid_producto=$g->id_producto&ppre=$g->precio&pcat=$g->nombre'> << </a> </td>";
+									echo "<td><a href='views/frmBuscarProducto.php? ppro=$g->descripcion&pid_producto=$g->id_producto&ppre=$g->precio&pcat=$g->nombre'> << </a> </td>";
 									echo "</tr>";
 								}
 								echo "</table></center>";
@@ -113,7 +113,7 @@ include_once('models/clsProducto.php');
 	}
 
 	if ($_POST['botones'] == "Volver") {
-		header("Location: http://localhost/EJEMPLOS/maestro-detalle/frmVenta.php");
+		header("Location: http://localhost/EJEMPLOS/maestro-detalle/views/frmVenta.php");
 	}
 
 	?>

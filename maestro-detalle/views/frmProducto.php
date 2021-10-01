@@ -1,19 +1,19 @@
 <?php
-include_once('models/clsProducto.php');
-include_once('models/clsCategoria.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsProducto.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsCategoria.php');
 ?>
 <html>
 
 <head>
 	<title>Registro de Productos</title>
 	<!-- Llamada a la CSS -->
-	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
+	<link rel="stylesheet" href="C:\xampp\htdocs\EJEMPLOS\maestro-detalle/css/estilo.css" type="text/css" />
 </head>
 
 <body>
 
 	<center>
-		<form id="form1" name="form1" method="post" action="frmProducto.php">
+		<form id="form1" name="form1" method="post" action="views/frmProducto.php">
 			<fieldset id="form">
 				<legend>REGISTRO DE PRODUCTOS</legend>
 				<table width="325" border="0">
@@ -158,7 +158,7 @@ include_once('models/clsCategoria.php');
 				echo "<td> <input type=\"text\" size=\"8\"  readonly=\"true\"  value=\"$fila->precio\" /> </td>";
 				echo "<td> <input type=\"text\" size=\"18\" readonly=\"true\"  value=\"$fila->nombre\" /> </td>";
 				echo "<td>
-						<a href='frmProducto.php?
+						<a href='views/frmProducto.php?
 						pid_producto=$fila->id_producto
 						&pdescripcion=$fila->descripcion
 						&pprecio=$fila->precio

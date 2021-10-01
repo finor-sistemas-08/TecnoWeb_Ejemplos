@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-include_once('models/clsCliente.php');
+include_once('C:\xampp\htdocs\EJEMPLOS\maestro-detalle/models/clsCliente.php');
 $valor = $_POST['txtBuscar'];
 ?>
 
@@ -11,13 +11,13 @@ $valor = $_POST['txtBuscar'];
 	<title>Registro de Clientes</title>
 
 	<!-- Llamada a la CSS -->
-	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
+	<link rel="stylesheet" href="C:\xampp\htdocs\EJEMPLOS\maestro-detalle/css/estilo.css" type="text/css" />
 </head>
 
 <body>
 
 	<center>
-		<form id="form1" name="form1" method="post" action="frmCliente.php">
+		<form id="form1" name="form1" method="post" action="views/frmCliente.php">
 			<fieldset id="form">
 				<legend>REGISTRO DE CLIENTES</legend>
 				<table width="325" border="0">
@@ -98,7 +98,7 @@ $valor = $_POST['txtBuscar'];
 								</p>
 							<?php
 							} else {
-								echo "<center><a href='frmBuscarCliente.php' > Volver </a></center>";
+								echo "<center><a href='views/frmBuscarCliente.php' > Volver </a></center>";
 							}
 							?>
 
@@ -126,10 +126,10 @@ $valor = $_POST['txtBuscar'];
 				echo "Cliente Guardado..!!!";
 				if (isset($_SESSION['nuevocliente'])) {
 					$aux = $obj->ultimo_codigo();
-					header("Location: http://localhost/EJEMPLOS/maestro-detalle/frmBuscarCliente.php? pnuevo_cli=$aux");
+					header("Location: http://localhost/EJEMPLOS/maestro-detalle/views/frmBuscarCliente.php? pnuevo_cli=$aux");
 					
 					// Solo ocurre cuando dan clic
-					// echo("<a href='frmBuscarCliente.php?pnuevo_cli=$aux'></a>");
+					// echo("<a href='views/frmBuscarCliente.php?pnuevo_cli=$aux'></a>");
 				}
 			} else
 				echo "Error al guardar el Cliente";
@@ -204,7 +204,7 @@ $valor = $_POST['txtBuscar'];
 			echo "<td>$fila->empresa</td>";
 			echo "<td>$fila->telefono</td>";
 			echo "<td>$fila->direccion</td>";
-			echo "<td><a href='frmCliente.php? cod=$fila->id_cliente&nom=$fila->nombre&ape=$fila->apellidos&
+			echo "<td><a href='views/frmCliente.php? cod=$fila->id_cliente&nom=$fila->nombre&ape=$fila->apellidos&
 		emp=$fila->empresa&tel=$fila->telefono&dir=$fila->direccion' > Editar </a> </td>";
 			echo "</tr>";
 		}
