@@ -16,7 +16,7 @@ include_once('models/clsCategoria.php');
 		<form id="form1" name="form1" method="post" action="frmProducto.php">
 			<fieldset id="form">
 				<legend>REGISTRO DE PRODUCTOS</legend>
-				<table width="325" border="0">
+				<table width="400" border="0">
 					<tr>
 						<td>&nbsp;</td>
 						<td><?php $cod = $_GET['pid_producto']; ?>
@@ -39,6 +39,15 @@ include_once('models/clsCategoria.php');
 							</label></td>
 					</tr>
 					<tr>
+						<td>Stock</td>
+						<td>
+							<label>
+								<?php $stock = $_GET['pstock']; ?>
+								<input name="txtStock" type="text" value="<?php echo $stock ?>" id="txtStock" />
+							</label>
+						</td>
+					</tr>
+					<tr>
 						<td>Categoria</td>
 						<td><label>
 								<?php
@@ -48,12 +57,11 @@ include_once('models/clsCategoria.php');
 								while ($fila = mysqli_fetch_array($reg)) {
 								?>
 									<option <?php
-												if ($_GET['pcategoria'] == $fila['nombre'])
-													echo "selected";
-												else 
-											?> 
-										value="<?php echo $fila['id_categoria']; ?>">
-											<?php echo $fila['nombre']; ?>
+											if ($_GET['pcategoria'] == $fila['nombre'])
+												echo "selected";
+											else
+											?> value="<?php echo $fila['id_categoria']; ?>">
+										<?php echo $fila['nombre']; ?>
 									</option>
 								<?php
 								}
@@ -64,7 +72,11 @@ include_once('models/clsCategoria.php');
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
-						<td><label></label></td>
+						<td><label>
+								<!-- Sección de Búsqueda de registros-->
+								<!-- <input type="submit" name="botones" value="Mostrar Datos" /> -->
+								<!-- <input type="text" name="txtBuscar" value=""> -->
+							</label></td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -73,6 +85,7 @@ include_once('models/clsCategoria.php');
 								<input type="submit" name="botones" value="Guardar" />
 								<input type="submit" name="botones" value="Modificar" />
 								<input type="submit" name="botones" value="Eliminar" />
+								<input type="submit" name="botones" value="Mostrar Datos" />
 							</label>
 						</td>
 					</tr>
@@ -85,6 +98,12 @@ include_once('models/clsCategoria.php');
 		</form>
 
 		<?php
+		// Se ejecuta automáticamente al cargar la página
+		// Muestra los registros
+		if (!$_POST['botones']) {
+			buscar();
+		}
+
 		function buscar()
 		{
 			$obj = new Producto();
@@ -92,8 +111,6 @@ include_once('models/clsCategoria.php');
 			mostrarRegistros($resultado);
 		}
 
-		if (!$_POST['botones'])
-			buscar();
 
 		function guardar()
 		{
@@ -101,6 +118,7 @@ include_once('models/clsCategoria.php');
 				$obj = new Producto();
 				$obj->setDescripcion($_POST['txtDescripcion']);
 				$obj->setPrecio($_POST['txtPrecio']);
+				$obj->setStock($_POST['txtStock']);
 				$obj->setIdCategoria($_POST['cboCategoria']);
 				if ($obj->guardar()) {
 					buscar();
@@ -118,6 +136,7 @@ include_once('models/clsCategoria.php');
 				$obj->setIdProducto($_POST['txtIdProducto']);
 				$obj->setDescripcion($_POST['txtDescripcion']);
 				$obj->setPrecio($_POST['txtPrecio']);
+				$obj->setStock($_POST['txtStock']);
 				$obj->setIdCategoria($_POST['cboCategoria']);
 				if ($obj->modificar()) {
 					buscar();
@@ -149,6 +168,7 @@ include_once('models/clsCategoria.php');
 		   <td><font color='white'>Codigo</font></td>
 	       <td><font color='white'>Descripcion </font></td>
 		   <td><font color='white'> Precio</font></td>
+		   <td><font color='white'> Stock</font></td>
 		   <td><font color='white'> Categoria</font></td>
 		   <td><font color='white'>*</font></td></tr>";
 			while ($fila = mysqli_fetch_object($registros)) {
@@ -156,14 +176,16 @@ include_once('models/clsCategoria.php');
 				echo "<td> <input type=\"text\" size=\"7\"  readonly=\"true\"  value=\" $fila->id_producto\" /> </td>";
 				echo "<td> <input type=\"text\" size=\"30\" readonly=\"true\"  value=\"$fila->descripcion\" /> </td>";
 				echo "<td> <input type=\"text\" size=\"8\"  readonly=\"true\"  value=\"$fila->precio\" /> </td>";
+				echo "<td> <input type=\"text\" size=\"8\"  readonly=\"true\"  value=\"$fila->stock\" /> </td>";
 				echo "<td> <input type=\"text\" size=\"18\" readonly=\"true\"  value=\"$fila->nombre\" /> </td>";
 				echo "<td>
 						<a href='frmProducto.php?
-						pid_producto=$fila->id_producto
-						&pdescripcion=$fila->descripcion
-						&pprecio=$fila->precio
-						&pcategoria=$fila->nombre'>
-						<<
+							pid_producto=$fila->id_producto
+							&pdescripcion=$fila->descripcion
+							&pprecio=$fila->precio
+							&pstock=$fila->stock
+							&pcategoria=$fila->nombre'>
+							Edit
 						</a>
 					</td>";
 				echo "</tr>";
@@ -193,8 +215,8 @@ include_once('models/clsCategoria.php');
 				}
 				break;
 
-			case "Buscar": {
-					//buscar();
+			case "Mostrar Datos": {
+					buscar();
 				}
 				break;
 		}

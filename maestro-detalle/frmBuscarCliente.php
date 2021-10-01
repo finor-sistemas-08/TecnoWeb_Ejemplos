@@ -25,7 +25,7 @@ include_once('models/clsCliente.php');
 				<table width="342" border="0">
 					<tr>
 						<td>
-							<label>Busqueda</label>
+							<label>Búsqueda</label>
 						</td>
 						<td>
 							<input name="txtBuscarCli" type="text" size="20" value="" id="txtBuscarCli" />
@@ -34,7 +34,7 @@ include_once('models/clsCliente.php');
 					<tr>
 						<td colspan="2">
 							<center>
-								<input type="submit" name="botones" class="btn" value="Buscar" />
+								<input type="submit" class="btn" name="botones" value="Buscar" />
 								<input type="submit" class="btn" name="botones" value="Volver" />
 							</center>
 						</td>
@@ -55,6 +55,7 @@ include_once('models/clsCliente.php');
 								if ($_GET['pnuevo_cli']) {
 									$clientes = $aux->buscarPorCodigo($_GET['pnuevo_cli']);
 								} else {
+									// $_POST["grupo"] corresponde a la opción escogida en el radiobutton
 									if ($_POST['grupo'] == "Nombre") {
 										$clientes = $aux->buscarPorNombreApellidos($_POST['txtBuscarCli']);
 									}
@@ -91,19 +92,6 @@ include_once('models/clsCliente.php');
 												</a>
 											</td>";
 									} else {
-										// $_POST["pid_cli"] = $f->id_cliente;
-										// $_POST["pnom_cli"] = $f->nombre . " " . $f->apellidos;
-
-										// Para agregar al formulario de venta
-										// echo "<td>
-										// 	<a href='frmBuscarCliente.php?
-										// 		pnom_cli=$f->nombre $f->apellidos
-										// 		&pid_cli=$f->id_cliente
-										// 	'> 
-										// 		Add
-										// 	</a>
-										// </td>";
-
 										// Botón para editar el registro seleccionado
 										echo "<td>
 												<a href='frmCliente.php?
@@ -136,6 +124,8 @@ include_once('models/clsCliente.php');
 		</form>
 	</center>
 	<?php
+
+	
 
 	//manda al formulario Venta el nombre y apellidos
 	if ($_GET['pnom_cli']) {

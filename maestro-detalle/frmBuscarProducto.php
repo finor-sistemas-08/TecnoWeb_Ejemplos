@@ -26,7 +26,6 @@ include_once('models/clsProducto.php');
 						<td width="102"><label>Buscar Producto</label></td>
 						<td width="230"><label>
 								<?php $cat = $_GET['pcat']; ?>
-
 								<input name="txtCategoria" type="text" value="<?php echo $cat; ?>" id="txtCategoria" />
 								<input type="submit" name="botones" class="btn" value="Buscar" />
 

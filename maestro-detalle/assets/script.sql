@@ -44,4 +44,4 @@ create table detalle_venta(
 );
 
 -- Añadir stock a la tabla Producto
--- alter table producto add stock int not null;
+-- alter table producto add stock int not null after precio;
