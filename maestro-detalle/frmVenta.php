@@ -29,13 +29,13 @@ if (!isset($_SESSION['fecha'])) {
 }
 
 // Inicializando la variable addClient en el array asociativo $_SESSION
-// if (!isset($_SESSION["addClient"])) {
-// 	$_SESSION['addClient'] = false;
-// }
+if (!isset($_SESSION["addClient"])) {
+	$_SESSION['addClient'] = false;
+}
 
 // Cuando se dé clic al botón se indica a frmBuscarCliente que queremos añadir un cliente
 if (isset($_SESSION["addClient"])) {
-	echo "addClient no es null";
+	echo "addClient no es null, es: ";
 	var_dump($_SESSION["addClient"]);
 } else {
 	echo "addClient es null";
@@ -81,7 +81,7 @@ function switchAddClient()
 <html>
 
 <head>
-	<title>Registro de Ventas</title>
+	<title>Venta de Productos</title>
 	<script>
 		var miPopup
 

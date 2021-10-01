@@ -8,7 +8,7 @@ $valor = $_POST['txtBuscar'];
 <html>
 
 <head>
-	<title>Registro de Clientes</title>
+	<title>Clientes</title>
 
 	<!-- Llamada a la CSS -->
 	<link rel="stylesheet" href="css/estilo.css" type="text/css" />

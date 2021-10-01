@@ -23,6 +23,7 @@ create table producto(
   id_producto int auto_increment primary key,
   descripcion varchar(30),
   precio float not null,
+  stock int not null,
   id_categoria int not null,
   foreign key(id_categoria) references categoria(id_categoria)
 );
@@ -41,3 +42,6 @@ create table detalle_venta(
   foreign key(id_venta) references venta(id_venta),
   foreign key(id_producto) references producto(id_producto)
 );
+
+-- Añadir stock a la tabla Producto
+-- alter table producto add stock int not null;

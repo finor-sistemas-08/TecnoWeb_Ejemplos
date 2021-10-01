@@ -5,7 +5,7 @@ include_once('models/clsCategoria.php');
 <html>
 
 <head>
-	<title>Registro de Productos</title>
+	<title>Productos</title>
 	<!-- Llamada a la CSS -->
 	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
 </head>

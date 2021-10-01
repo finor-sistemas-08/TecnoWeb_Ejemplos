@@ -4,13 +4,13 @@ session_start();
 include_once('models/clsCliente.php');
 
 // if (!isset($_SESSION["addClient"])) {
-	// $_SESSION["addClient"] == false;
+// $_SESSION["addClient"] == false;
 // }
 ?>
 <html>
 
 <head>
-	<title></title>
+	<title>Buscar Clientes</title>
 
 	<!-- Llamada a la CSS -->
 	<link rel="stylesheet" href="css/estilo.css" type="text/css" />

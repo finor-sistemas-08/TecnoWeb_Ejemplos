@@ -10,7 +10,7 @@ include_once('models/clsProducto.php');
 <html>
 
 <head>
-	<title></title>
+	<title>Buscar Productos</title>
 	<!-- Llamada a la CSS -->
 	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
 </head>
