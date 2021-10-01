@@ -1,13 +1,13 @@
 <?php
-include_once('clsProducto.php');
-include_once('clsCategoria.php');
+include_once('models/clsProducto.php');
+include_once('models/clsCategoria.php');
 ?>
 <html>
 
 <head>
 	<title>Registro de Productos</title>
 	<!-- Llamada a la CSS -->
-	<link rel="stylesheet" href="estilo.css" type="text/css" />
+	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
 </head>
 
 <body>

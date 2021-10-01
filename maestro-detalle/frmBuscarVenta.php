@@ -1,11 +1,11 @@
 <?php
 ob_start();
-include_once('clsCarro.php');
+include_once('models/clsCarro.php');
 session_start();
 ?>
 <?php
-include_once("clsVenta.php");
-include_once('clsDetalleVenta.php');
+include_once("models/clsVenta.php");
+include_once('models/clsDetalleVenta.php');
 ?>
 <html>
 
@@ -13,7 +13,7 @@ include_once('clsDetalleVenta.php');
 	<title></title>
 
 	<!-- Llamada a la CSS -->
-	<link rel="stylesheet" href="estilo.css" type="text/css" />
+	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
 
 </head>
 
@@ -77,9 +77,9 @@ include_once('clsDetalleVenta.php');
 			$_SESSION['carrito']->Insertar($l->id_producto, $l->cantidad, $l->preciov);
 		}
 		echo "<script> 
-    opener.document.location.reload() 
-    window.close() 
-</script>";
+			opener.document.location.reload() 
+			window.close() 
+		</script>";
 	}
 	?>
 </body>

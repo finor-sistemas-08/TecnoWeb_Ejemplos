@@ -1,18 +1,18 @@
 <?php
 ob_start();
-include_once('clsCarro.php');
+include_once('models/clsCarro.php');
 session_start();
 ?>
 
 <?php
-include_once('clsProducto.php');
+include_once('models/clsProducto.php');
 ?>
 <html>
 
 <head>
 	<title></title>
 	<!-- Llamada a la CSS -->
-	<link rel="stylesheet" href="estilo.css" type="text/css" />
+	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
 </head>
 
 <body>

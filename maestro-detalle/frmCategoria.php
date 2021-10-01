@@ -1,10 +1,10 @@
 <?php
 ob_start();
-include_once('clsConexion.php');
+include_once('models/clsConexion.php');
 
 // Inicia una nueva sesión en el contexto actual
 session_start();
-include_once('clsCategoria.php');
+include_once('models/clsCategoria.php');
 
 // Si la variable de sesión contiene un valor "búsqueda" y éste no es 
 // nulo entonces se le asigna un valor string "registro" el cual nos va
@@ -21,7 +21,7 @@ if (!isset($_SESSION['busqueda'])) {
 <title>Categorias de Productos</title>
 
 <!-- Llamada a la CSS -->
-<link rel="stylesheet" href="estilo.css" type="text/css" />
+<link rel="stylesheet" href="css/estilo.css" type="text/css" />
 
 </head>
 

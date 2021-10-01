@@ -1,0 +1,7 @@
+Posibles preguntas de examen
+
+- Mostrar la cantidad de compras realizadas al lado de cada registro de cliente.
+- Añadir el atributo descuento en la tabla Venta e implementar su función al registrar una nueva venta.
+- Calcular el IVA con un botón en el formulario del maestro detalle.
+- Consultar las ventas en un rango de fechas en el formulario del maestro detalle
+- 

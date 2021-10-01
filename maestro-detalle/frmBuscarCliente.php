@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-include_once('clsCliente.php');
+include_once('models/clsCliente.php');
 ?>
 <html>
 
@@ -9,7 +9,7 @@ include_once('clsCliente.php');
 	<title></title>
 	
 	<!-- Llamada a la CSS -->
-	<link rel="stylesheet" href="estilo.css" type="text/css" />
+	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
 
 </head>
 

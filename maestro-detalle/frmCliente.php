@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-include_once('clsCliente.php');
+include_once('models/clsCliente.php');
 $valor = $_POST['txtBuscar'];
 ?>
 
@@ -11,7 +11,7 @@ $valor = $_POST['txtBuscar'];
 	<title>Registro de Clientes</title>
 
 	<!-- Llamada a la CSS -->
-	<link rel="stylesheet" href="estilo.css" type="text/css" />
+	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
 </head>
 
 <body>

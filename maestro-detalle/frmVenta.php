@@ -1,13 +1,13 @@
 <?php
 ob_start();
-include_once('clsCarro.php');
+include_once('models/clsCarro.php');
 session_start();
 ?>
 <?php
-include_once('clsVenta.php');
-include_once('clsDetalleVenta.php');
-include_once('clsCliente.php');
-include_once('clsProducto.php');
+include_once('models/clsVenta.php');
+include_once('models/clsDetalleVenta.php');
+include_once('models/clsCliente.php');
+include_once('models/clsProducto.php');
 ?>
 <?php
 if (!isset($_SESSION['carrito'])) {
@@ -24,9 +24,9 @@ if (!isset($_SESSION['idventa'])) {
 }
 
 // Añadiendo ID Producto
-if(!isset($_SESSION['idproducto'])){
-	$_SESSION['idproducto'] = $_POST['idproducto'];
-}
+// if(!isset($_SESSION['idproducto'])){
+// 	$_SESSION['idproducto'] = $_POST['idproducto'];
+// }
 // ----------------------------------------------
 
 if (!isset($_SESSION['nuevocliente'])) {
@@ -70,7 +70,7 @@ function nuevo()
 	</script>
 
 	<!-- Llamada a la CSS -->
-	<link rel="stylesheet" href="estilo.css" type="text/css" />
+	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
 </head>
 
 <body>
@@ -185,7 +185,7 @@ function nuevo()
 									<input type="submit" name="botones" class="btn" value="Nuevo" />
 									<input type="submit" name="botones" class="btn" value="Guardar" />
 									<input type="submit" name="botones" class="btn" value="Modificar" />
-									<input type="submit" name="botones"  value="Eliminar" />
+									<input type="submit" name="botones" value="Eliminar" />
 									<input type="button" name="botones" class="btn" value="Busqueda" onClick="abreBuscarVenta()" />
 								</label></center>
 						</td>
