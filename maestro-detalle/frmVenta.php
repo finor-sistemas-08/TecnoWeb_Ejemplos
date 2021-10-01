@@ -23,6 +23,13 @@ if (!isset($_SESSION['idventa'])) {
 	$_SESSION['idventa'] = $_POST['txtIdVenta'];
 }
 
+// Añadido para traer la fecha de venta
+if (!isset($_SESSION['fecha'])) {
+	$_SESSION['fecha'] = $_POST['txtFecha'];
+}
+
+
+
 // Añadiendo ID Producto
 // if(!isset($_SESSION['idproducto'])){
 // 	$_SESSION['idproducto'] = $_POST['idproducto'];
@@ -42,6 +49,7 @@ function nuevo()
 	$_SESSION["cliente"] = "";
 	$_SESSION["idcliente"] = "";
 	$_SESSION["idventa"] = "";
+	$_SESSION['fecha'] = "";
 	$_SESSION["carrito"] = new Carrito();
 }
 ?>
@@ -89,7 +97,7 @@ function nuevo()
 								$_SESSION["idventa"] = $id_ven;
 							}
 							?>
-							<input name="txtIdVenta" type="text" readonly="false" value="<?php echo $_SESSION["idventa"]; ?>" id="txtIdVenta" />
+							<input name="txtIdVenta" type="hidden" readonly="true" value="<?php echo $_SESSION["idventa"]; ?>" id="txtIdVenta" />
 						</td>
 					</tr>
 					<tr>
@@ -100,7 +108,7 @@ function nuevo()
 									$fecha = $_GET['pfecha'];
 								}
 								?>
-								<input name="txtFecha" type="date" maxlength="8" size="8" value="<?php echo $fecha; ?>" id="txtFecha" />
+								<input name="txtFecha" type="date" maxlength="8" size="8" value="<?php echo $_SESSION['fecha']; ?>" id="txtFecha" />
 							</label>
 						</td>
 					</tr>
@@ -126,7 +134,7 @@ function nuevo()
 									$_SESSION["idcliente"] = $id_cli;
 								}
 								?>
-								<input name="txtIdCliente" type="text" readonly="true" size="3" value="<?php echo $_SESSION['idcliente']; ?>" id="txtIdCliente" />
+								<input name="txtIdCliente" type="hidden" readonly="true" size="3" value="<?php echo $_SESSION['idcliente']; ?>" id="txtIdCliente" />
 							</label></td>
 					</tr>
 
@@ -153,6 +161,7 @@ function nuevo()
 								for ($k = 1; $k <= $_SESSION['carrito']->getDim(); $k++) {
 									$aux = new Producto();
 									$productos = $aux->buscarPorCodigo($_SESSION['carrito']->getProducto($k - 1));
+
 									while ($g = mysqli_fetch_object($productos)) {
 										$cant = $_SESSION['carrito']->getCantidad($k - 1);
 										$prec = $_SESSION['carrito']->getPrecio($k - 1);

@@ -101,7 +101,9 @@ class Venta extends Conexion
 
 	public function buscarVenta($criterio)
 	{
-		$sql = "select c.id_cliente, c.nombre, c.apellidos, v.id_venta, v.fecha from cliente c, venta v where c.id_cliente=v.id_cliente and (c.nombre like '%$criterio%' or c.apellidos like '%$criterio%')";
+		$sql = "select c.id_cliente, c.nombre, c.apellidos, v.id_venta, v.fecha
+				from cliente c, venta v
+				where c.id_cliente=v.id_cliente and (c.nombre like '%$criterio%' or c.apellidos like '%$criterio%')";
 		return parent::ejecutar($sql);
 	}
 }
