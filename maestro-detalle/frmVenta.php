@@ -34,16 +34,18 @@ if (!isset($_SESSION["addClient"])) {
 }
 
 // Cuando se dé clic al botón se indica a frmBuscarCliente que queremos añadir un cliente
-if (isset($_SESSION["addClient"])) {
-	echo "addClient no es null, es: ";
-	var_dump($_SESSION["addClient"]);
-} else {
-	echo "addClient es null";
-}
+// if (isset($_SESSION["addClient"])) {
+// 	echo "addClient no es null, es: ";
+// 	var_dump($_SESSION["addClient"]);
+// } else {
+// 	echo "addClient es null";
+// }
 
+// Por eliminar
 // $_SESSION["addClient"] = true; 
 
 
+// Por eliminar
 // Añadiendo ID Producto
 // if(!isset($_SESSION['idproducto'])){
 // 	$_SESSION['idproducto'] = $_POST['idproducto'];
@@ -65,6 +67,7 @@ function nuevo()
 	$_SESSION["idventa"] = "";
 	$_SESSION['fecha'] = "";
 
+	$_SESSION['posCart'] = 0;
 	// Indicamos que no queremos añadir un usuario aún desde el formulario de búsqueda
 	$_SESSION["addClient"] = false;
 
@@ -76,6 +79,44 @@ function switchAddClient()
 	// Cuando se dé clic al botón se indica a frmBuscarCliente que queremos añadir un cliente
 	$_SESSION["addClient"] = true;
 }
+
+// Mostrando el carrito
+echo "El carrito de productos contiene los siguientes datos: ";
+echo ("<pre>");
+print_r($_SESSION['carrito']);
+echo ("</pre>");
+
+function quitarProducto()
+{
+	echo "El valor de la posición es: ";
+	echo $_POST['posicionCart'];
+	echo "<br>";
+	// Elimina uno de los registros de produtos si es que la variable "pelim" no es nulo
+	if ($_POST['posicionCart']) {
+		if ($_POST['posicionCart'] == 1) {
+			$_SESSION["carrito"]->Eliminar(1);
+			$posicion = 1;
+		} 
+		else {
+			$_SESSION['posCart'] = $_POST['posicionCart'] - 1;
+			$posicion = $_SESSION['posCart'];
+			$_SESSION["carrito"]->Eliminar($posicion);
+		}
+		echo "Producto quitado del carrito en la posición: $posicion";
+		updatePosCart();
+	} else {
+		echo "posicionCart está nulo o vacío";
+	}
+}
+
+updatePosCart();
+
+function updatePosCart()
+{
+	for ($i = 0; $i < $_SESSION['carrito']->getDim(); $i++) {
+		$_SESSION['cart'][$i] = $i;
+	}
+}
 ?>
 
 <html>
@@ -86,17 +127,17 @@ function switchAddClient()
 		var miPopup
 
 		function abreBuscarCliente() {
-			miPopup = window.open("frmBuscarCliente.php", "miwin", "width=600,height=400,scrollbars=yes")
+			miPopup = window.open("frmBuscarCliente.php", "miwin", "width=800,height=500,scrollbars=yes")
 			miPopup.focus()
 		}
 
 		function abreBuscarProducto() {
-			miPopup = window.open("frmBuscarProducto.php", "miwin", "width=600,height=350,scrollbars=yes")
+			miPopup = window.open("frmBuscarProducto.php", "miwin", "width=800,height=550,scrollbars=yes")
 			miPopup.focus()
 		}
 
 		function abreBuscarVenta() {
-			miPopup = window.open("frmBuscarVenta.php", "miwin", "width=600,height=350,scrollbars=yes")
+			miPopup = window.open("frmBuscarVenta.php", "miwin", "width=800,height=450,scrollbars=yes")
 			miPopup.focus()
 		}
 	</script>
@@ -111,7 +152,7 @@ function switchAddClient()
 		<form id="form1" name="form1" method="post" action="frmVenta.php">
 			<fieldset id="form">
 				<legend>REGISTRO DE VENTAS </legend>
-				<table width="442" border="0">
+				<table width="642" border="0">
 					<tr>
 						<td> </td>
 						<td>
@@ -147,7 +188,7 @@ function switchAddClient()
 								}
 								?>
 
-								<!-- Buscar cliente -->
+								<!-- Nombre del cliente en un input -->
 								<input name="txtNombreCli" type="text" value="<?php echo $_SESSION["cliente"]; ?>" id="txtNombreCli" />
 
 								<!-- Buscar cliente con "a href" -->
@@ -171,20 +212,19 @@ function switchAddClient()
 							</label></td>
 					</tr>
 
-					<!-- Agregar Producto -->
+					<!-- Agregar Producto con ventana emergente -->
 					<tr>
 						<td colspan="2">
 							<center><a href="#" onClick="abreBuscarProducto()"><b> Agregar Productos <b></a></center>
 							<?php
-							if ($_GET['pelim']) {
-								$_SESSION["carrito"]->Eliminar($_GET['pelim'] - 1);
-							}
 
-							// Mostrando la lista de carrito de compras
+
+
+							// Mostrando la lista de carrito de compras o PRODUCTOS a comprar
 							echo "<table border='1' align='left'>";
 							echo "<tr bgcolor='black' align='center'>
-									<td width='520'><font color='white'>Descripcion</font></td>
-									<td><font color='white'> Categoria</font></td>		   		   
+									<td width='420'><font color='white'>Descripcion</font></td>
+									<td width='200' ><font color='white'> Categoria</font></td>		   		   
 									<td><font color='white'> Precio</font></td>
 									<td><font color='white'> Cantidad</font></td>
 									<td><font color='white'> Subtotal</font></td>
@@ -200,13 +240,30 @@ function switchAddClient()
 										$prec = $_SESSION['carrito']->getPrecio($k - 1);
 										$subt = $cant * $prec;
 										$total = $total + $subt;
+
+										$pos_aux = $_SESSION['cart'][$k - 1];
+
 										echo "<tr bgcolor='44BB77'>";
 										echo "<td>$g->descripcion</td>";
 										echo "<td>$g->nombre</td>";
 										echo "<td>$prec</td>";
 										echo "<td>$cant</td>";
 										echo "<td>$subt</td>";
-										echo "<td><a href='frmVenta.php? pelim=$k'> << </a> </td>";
+
+										// Quitando producto del carro vía método GET
+										// echo "<td>
+										// 		<a href='frmVenta.php?
+										// 			pelim=$k'>
+										// 		 Quitar 
+										// 		</a>
+										// 	</td>";
+
+										// Quitar un producto del carrito o lista de productos vía un botón input
+										echo "<td>
+												<input type=\"submit\" name=\"botones\" class=\"btn\" value=\"Quitar\" />
+												
+												<input name=\"posicionCart\" type=\"text\" value=\" $pos_aux \"  />
+											</td>";
 										echo "</tr>";
 									}
 								}
@@ -218,6 +275,7 @@ function switchAddClient()
 						</td>
 					</tr>
 					<tr>
+						<!-- Salto de línea o espacios -->
 						<td>&nbsp;</td>
 						<td><label></label></td>
 					</tr>
@@ -227,7 +285,7 @@ function switchAddClient()
 									<input type="submit" name="botones" class="btn" value="Nuevo" />
 									<input type="submit" name="botones" class="btn" value="Guardar" />
 									<input type="submit" name="botones" class="btn" value="Modificar" />
-									<input type="submit" name="botones" value="Eliminar" />
+									<input type="submit" name="botones" class="btn" value="Eliminar" />
 									<input type="button" name="botones" class="btn" value="Busqueda" onClick="abreBuscarVenta()" />
 								</label></center>
 						</td>
@@ -322,8 +380,14 @@ function switchAddClient()
 				nuevo();
 			}
 			break;
+
 		case "Buscar Cliente": {
 				switchAddClient();
+			}
+			break;
+
+		case "Quitar": {
+				quitarProducto();
 			}
 			break;
 	}

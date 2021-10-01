@@ -4,4 +4,5 @@ Posibles preguntas de examen
 - Añadir el atributo descuento en la tabla Venta e implementar su función al registrar una nueva venta.
 - Calcular el IVA con un botón en el formulario del maestro detalle.
 - Consultar las ventas en un rango de fechas en el formulario del maestro detalle
-- 
+- Generar la vista de detalle de ventas con todos los datos relevantes de cliente, venta, categoría y detalle_venta
+- Reducir el stock según se ejecute cada venta
