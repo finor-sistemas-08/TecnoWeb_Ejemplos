@@ -1,17 +1,17 @@
 body {
-	background-color: #ffffff;
+	background-color: #030c1d;
 }
 #form {
     width:300px;
     margin:auto;
-    background-color:#084c50;
+    background-color:#37777a;
     border:none;
 }
 #form legend{
     font-weight:bold;
     font-size:18px;
     color:#FFFFFF;
-    background-color:#000000;
+    background-color:#268374;
     padding:3px 8px 3px 8px;
 }
 #form input.btn {
