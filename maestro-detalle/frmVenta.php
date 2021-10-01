@@ -28,6 +28,20 @@ if (!isset($_SESSION['fecha'])) {
 	$_SESSION['fecha'] = $_POST['txtFecha'];
 }
 
+// Inicializando la variable addClient en el array asociativo $_SESSION
+// if (!isset($_SESSION["addClient"])) {
+// 	$_SESSION['addClient'] = false;
+// }
+
+// Cuando se dé clic al botón se indica a frmBuscarCliente que queremos añadir un cliente
+if (isset($_SESSION["addClient"])) {
+	echo "addClient no es null";
+	var_dump($_SESSION["addClient"]);
+} else {
+	echo "addClient es null";
+}
+
+// $_SESSION["addClient"] = true; 
 
 
 // Añadiendo ID Producto
@@ -50,7 +64,17 @@ function nuevo()
 	$_SESSION["idcliente"] = "";
 	$_SESSION["idventa"] = "";
 	$_SESSION['fecha'] = "";
+
+	// Indicamos que no queremos añadir un usuario aún desde el formulario de búsqueda
+	$_SESSION["addClient"] = false;
+
 	$_SESSION["carrito"] = new Carrito();
+}
+
+function switchAddClient()
+{
+	// Cuando se dé clic al botón se indica a frmBuscarCliente que queremos añadir un cliente
+	$_SESSION["addClient"] = true;
 }
 ?>
 
@@ -87,7 +111,7 @@ function nuevo()
 		<form id="form1" name="form1" method="post" action="frmVenta.php">
 			<fieldset id="form">
 				<legend>REGISTRO DE VENTAS </legend>
-				<table width="342" border="0">
+				<table width="442" border="0">
 					<tr>
 						<td> </td>
 						<td>
@@ -116,6 +140,7 @@ function nuevo()
 						<td><label>Cliente</label></td>
 						<td><label>
 								<?php
+								// Por método GET se obtiene el nombre del cliente
 								if ($_GET['pnom_cli']) {
 									$nom_cli = $_GET['pnom_cli'];
 									$_SESSION["cliente"] = $nom_cli;
@@ -124,11 +149,19 @@ function nuevo()
 
 								<!-- Buscar cliente -->
 								<input name="txtNombreCli" type="text" value="<?php echo $_SESSION["cliente"]; ?>" id="txtNombreCli" />
-								<a href="#" onClick="abreBuscarCliente()">
+
+								<!-- Buscar cliente con "a href" -->
+								<!-- <a href="#" onClick="abreBuscarCliente()">
 									Buscar
-								</a>
+								</a> -->
+
+								<!-- Buscar un Cliente en una ventana emergente con frmBuscarCliente y cambiar el switch $_SESSION 'addClient' -->
+								<input type="submit" name="botones" value="Buscar Cliente" onclick="abreBuscarCliente()">
+
 								<?php
 								//href="frmBuscarCliente.php" 
+
+								// Por método GET obtiene el ID del cliente
 								if ($_GET['pid_cli']) {
 									$id_cli = $_GET['pid_cli'];
 									$_SESSION["idcliente"] = $id_cli;
@@ -287,6 +320,10 @@ function nuevo()
 
 		case "Nuevo": {
 				nuevo();
+			}
+			break;
+		case "Buscar Cliente": {
+				switchAddClient();
 			}
 			break;
 	}

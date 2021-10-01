@@ -2,12 +2,16 @@
 ob_start();
 session_start();
 include_once('models/clsCliente.php');
+
+// if (!isset($_SESSION["addClient"])) {
+	// $_SESSION["addClient"] == false;
+// }
 ?>
 <html>
 
 <head>
 	<title></title>
-	
+
 	<!-- Llamada a la CSS -->
 	<link rel="stylesheet" href="css/estilo.css" type="text/css" />
 
@@ -75,28 +79,30 @@ include_once('models/clsCliente.php');
 									echo "<td>$f->empresa</td>";
 									echo "<td>$f->telefono</td>";
 									echo "<td>$f->direccion</td>";
-									// if ($_GET["agregar"]) {
-									// 	echo "<td>
-									// 			<a href='frmBuscarCliente.php?
-									// 				pnom_cli=$f->nombre $f->apellidos
-									// 				&pid_cli=$f->id_cliente
-									// 			'> 
-									// 				<<
-									// 			</a>
-									// 		</td>";
-									// } else {
+
+									if ($_SESSION["addClient"] == true) {
+										// Por el método GET se envía el ID y el nombre del cliente
+										echo "<td>
+												<a href='frmBuscarCliente.php?
+													pnom_cli=$f->nombre $f->apellidos
+													&pid_cli=$f->id_cliente
+												'> 
+													Add
+												</a>
+											</td>";
+									} else {
 										// $_POST["pid_cli"] = $f->id_cliente;
 										// $_POST["pnom_cli"] = $f->nombre . " " . $f->apellidos;
 
 										// Para agregar al formulario de venta
-										echo "<td>
-											<a href='frmBuscarCliente.php?
-												pnom_cli=$f->nombre $f->apellidos
-												&pid_cli=$f->id_cliente
-											'> 
-												Add
-											</a>
-										</td>";
+										// echo "<td>
+										// 	<a href='frmBuscarCliente.php?
+										// 		pnom_cli=$f->nombre $f->apellidos
+										// 		&pid_cli=$f->id_cliente
+										// 	'> 
+										// 		Add
+										// 	</a>
+										// </td>";
 
 										// Botón para editar el registro seleccionado
 										echo "<td>
@@ -107,11 +113,11 @@ include_once('models/clsCliente.php');
 													&emp=$f->empresa
 													&tel=$f->telefono
 													&dir=$f->direccion'>
-													<< 
+													Edit 
 												</a>
 											</td>";
 										echo "</tr>";
-									// }
+									}
 								}
 								echo "</table>";
 							}
@@ -130,11 +136,14 @@ include_once('models/clsCliente.php');
 		</form>
 	</center>
 	<?php
-	
+
 	//manda al formulario Venta el nombre y apellidos
 	if ($_GET['pnom_cli']) {
 		$_SESSION['cliente'] = $_GET['pnom_cli'];
 		$_SESSION['idcliente'] = $_GET['pid_cli'];
+
+		// Avisarando que se busca añadir un nuevo cliente
+		// $_SESSION["addClient"] = true;
 
 		echo "<script> 
 				opener.document.location.reload() 

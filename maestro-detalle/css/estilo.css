@@ -1,5 +1,5 @@
 body {
-	background-color: #030c1d;
+	background-color: #0a343a;    
 }
 #form {
     width:300px;
@@ -11,14 +11,14 @@ body {
     font-weight:bold;
     font-size:18px;
     color:#FFFFFF;
-    background-color:#268374;
+    background-color:#aee7de;
     padding:3px 8px 3px 8px;
 }
 #form input.btn {
 width:inherit;
     padding:2px;
-    color:#91d5da;
-    background-color:#576F00;
+    color:#dff8fa;
+    background-color:#006f4a;
     border:1px solid #000000;
 }
 A:link {color:#FFFF00;}
